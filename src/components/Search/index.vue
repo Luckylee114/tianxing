@@ -34,7 +34,7 @@
         data(){
             return {
                 moviesList:[],
-                message:''
+                message:'',
             }
         },
         methods:{
@@ -48,9 +48,10 @@
         watch:{
             message(newVal){
                 var that=this
+                var cityId = this.$store.state.city.id;
                 //函数防抖  axios请求频繁时取消上一次请求
                 this.cancelRequest()
-                this.axios.get('/api/searchList?cityId=10&kw='+newVal,{
+                this.axios.get('/api/searchList?cityId='+ cityId +'&kw='+newVal,{
                     cancelToken: new this.axios.CancelToken(function executor(c) {
                         that.source = c;
                     })
