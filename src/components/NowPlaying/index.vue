@@ -18,13 +18,13 @@
                 <li class='pullDown'>{{pullDownMsg}}</li>
                 <li v-for="item in movieList" :key="item.id">
                     <!--影片封面图-->
-                    <div class="pic_show" @tap="handleToDetail">
+                    <div class="pic_show" @tap="handleToDetail(item.id)">
                         <!-- 使用过滤器 -->
                         <img :src="item.img | setWH('128.180')">
                     </div>
                     <div class="info_list">
                         <!-- 影片名 -->
-                        <h2>{{item.nm}} <img v-if="item.version" src="@/assets/maxs.png" alt=''></h2>
+                        <h2  @tap="handleToDetail(item.id)">{{item.nm}} <img v-if="item.version" src="@/assets/maxs.png" alt=''></h2>
                         <!-- 观众评分 -->
                         <p>
                             <span>观众评分</span>
@@ -101,8 +101,9 @@
             })
         },
         methods:{
-            handleToDetail(){
-                console.log(111)
+            handleToDetail(movieId){
+                //console.log(movieId);
+                this.$router.push('/movie/detail/1/' + movieId);
             },
             handleToScroll(pos){
                 if( pos.y > 30 ){
