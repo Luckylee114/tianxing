@@ -1,26 +1,46 @@
 export default {
     path : '/movie',
     component : () => import('@/views/Movie'),
-    children:[
+    children : [
         {
-            path:'city',
-            component : () => import('@/components/City'),
+            path : 'city',
+            component : () => import('@/components/City')
         },
         {
-            path:'nowPlaying',
-            component : () => import('@/components/NowPlaying'),
+            path : 'nowPlaying',
+            component : () => import('@/components/NowPlaying')
         },
         {
-            path:'commingSoon',
-            component : () => import('@/components/CommingSoon'),
+            path : 'comingSoon',
+            component : () => import('@/components/ComingSoon')
         },
         {
-            path :'search',
+            path : 'search',
             component : () => import('@/components/Search')
         },
         {
-            path:'/movie',
-            redirect:'/movie/nowPlaying'
+            path : 'detail/1/:movieId',
+            components : {
+                default : ()=> import('@/components/NowPlaying'),
+                detail : ()=> import('@/views/Movie/detail')
+            },
+            props : {
+                detail : true
+            }
+        },
+        {
+            path : 'detail/2/:movieId',
+            components : {
+                default : ()=> import('@/components/ComingSoon'),
+                detail : ()=> import('@/views/Movie/detail')
+            },
+            props : {
+                detail : true
+            }
+        },
+        {
+            path : '/movie',
+            redirect : '/movie/nowPlaying'
         }
     ]
 }
